@@ -3,15 +3,19 @@ const reconcileOrder = (existingBook, incomingOrder) => {
     return [incomingOrder]
   }
 
-  //!-------- Shoud loop through all existing books!!! only asks for first------- !!!!!
-  if (existingBook[0].type == incomingOrder.type) { // If both books have same type
-    const returnBook = []
+  for (let i = 0; existingBook.length; i++) {
+    if (existingBook[i].type == incomingOrder.type || existingBook[0].price != incomingOrder.price) {
+      // If both books have same type OR if prices do not match
+      const returnBook = []
 
-    returnBook.push(existingBook[0])
-    returnBook.push(incomingOrder)
+      returnBook.push(existingBook[0])
+      returnBook.push(incomingOrder)
 
-    return returnBook
+      return returnBook
+    }
+
   }
+
 }
 
 module.exports = reconcileOrder
