@@ -6,7 +6,7 @@ const reconcileOrder = (existingBook, incomingOrder) => {
 
   const returnBook = []
 
-  for (let i = 0; existingBook.length; i++) {
+  for (let i = 0; i < existingBook.length; i++) {
 
 
     if (existingBook[i].type === incomingOrder.type || existingBook[i].price !== incomingOrder.price) {
@@ -15,22 +15,19 @@ const reconcileOrder = (existingBook, incomingOrder) => {
       returnBook.push(existingBook[i])
       returnBook.push(incomingOrder)
 
-      return returnBook // WHY DOES THHIS NOT WORK OUTSIDE IF/FOR Statement????? returns first item
+      //return returnBook // WHY DOES THHIS NOT WORK OUTSIDE IF/FOR Statement????? returns first item
     }
-
-    /*
     else if (existingBook[i].price === incomingOrder.price && existingBook[i].price === incomingOrder.price) {
 
       returnBook.push(existingBook[i])
 
-      return returnBook
     }
-    */
+
 
 
   }
 
-  //return returnBook //This should work out here?
+  return returnBook //This should work out here?
 
 
 }
