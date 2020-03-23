@@ -86,7 +86,7 @@ describe('Order Book', () => {
       const incomingOrder = { type: 'sell', quantity: 15, price: 6150 }
 
       const updatedBook = reconcileOrder(existingBook, incomingOrder)
-
+      // Rob said JC said we could swap the order of the objects
       expect(updatedBook).to.deep.equal([{ type: 'buy', quantity: 5, price: 6150 }, { type: 'sell', quantity: 12, price: 6950 }])
     })
 
