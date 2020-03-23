@@ -28,27 +28,14 @@ const checkQuantity = (existing, incoming) => {
     } else if (existing[i].quantity < incoming.quantity) {
       incoming.quantity -= existing[i].quantity
       existing.splice(i, 1)
-      //existing.push(incoming)
       return checkType(existing, incoming) //Recursion fun time
     }
   }
-  // return addToBook(existing, incoming)
 }
-
 
 const addToBook = (existing, incoming) => {
   existing.push(incoming)
   return existing
 }
-
-/*
-
-const equalPrices = (incoming, existing) => { }
-const equalQuantities = (incoming, existing) => { }
-const unequalPrices = (incoming, existing) => { }
-const unequalQuantities = (incoming, existing) => { }
-*/
-
-
 
 module.exports = reconcileOrder
