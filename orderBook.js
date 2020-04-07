@@ -11,13 +11,13 @@ const checkAllTypesMatch = (existing, incoming) =>
 const checkPricesMatch = (existing, incoming) => {
   for (let i = 0; i < existing.length; i++) {
     if (existing[i].price === incoming.price) {
-      return checkQuantities(existing, incoming)
+      return reconcileQuantities(existing, incoming)
     }
   }
   return addToBook(existing, incoming)
 }
 
-const checkQuantities = (existing, incoming) => {
+const reconcileQuantities = (existing, incoming) => {
   for (let i = 0; i < existing.length; i++) {
     if (existing[i].quantity === incoming.quantity) {
       existing.splice(i, 1)
