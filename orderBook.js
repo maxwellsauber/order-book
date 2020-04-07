@@ -1,34 +1,36 @@
 const reconcileOrder = (existingBook, incomingOrder) =>
   existingBook.length
-    ? checkType(existingBook, incomingOrder)
+    ? checkAllTypesMatch(existingBook, incomingOrder)
     : addToBook(existingBook, incomingOrder)
 
-const checkType = (existing, incoming) =>
+const checkAllTypesMatch = (existing, incoming) =>
   existing.every((obj) => obj.type === incoming.type)
     ? addToBook(existing, incoming)
-    : checkPrice(existing, incoming)
+    : checkPricesMatch(existing, incoming)
 
-const checkPrice = (existing, incoming) => {
+const checkPricesMatch = (existing, incoming) => {
   for (let i = 0; i < existing.length; i++) {
     if (existing[i].price === incoming.price) {
-      return checkQuantity(existing, incoming)
+      return checkQuantities(existing, incoming)
     }
   }
   return addToBook(existing, incoming)
 }
 
-const checkQuantity = (existing, incoming) => {
+const checkQuantities = (existing, incoming) => {
   for (let i = 0; i < existing.length; i++) {
     if (existing[i].quantity === incoming.quantity) {
       existing.splice(i, 1)
       return existing
-    } else if (existing[i].quantity > incoming.quantity) {
+    }
+    if (existing[i].quantity > incoming.quantity) {
       existing[i].quantity -= incoming.quantity
       return existing
-    } else if (existing[i].quantity < incoming.quantity) {
+    }
+    if (existing[i].quantity < incoming.quantity) {
       incoming.quantity -= existing[i].quantity
       existing.splice(i, 1)
-      return checkType(existing, incoming) //Recursion fun time
+      return checkAllTypesMatch(existing, incoming)
     }
   }
 }
